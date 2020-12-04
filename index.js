@@ -136,7 +136,7 @@ const render = () => {
   let htmlString = `<div>`;
   htmlString += "<h1>Todos</h1>";
   htmlString += "<div class='btn-group'>";
-  htmlString += `<button onClick="window.location.reload();">Refresh Page</button>`;
+  htmlString += `<button onClick="window.location.reload();">Reset</button>`;
   htmlString += `<button class='btn' onclick='showDiv()'>Get Todos</button>`;
   htmlString += `<button class='btn' onclick='filterComplete();'>Filter Completed</button>`;
   htmlString += `<button class='btn' onclick='filterNotComplete();'>Filter Not Completed</button>`;
