@@ -45,10 +45,22 @@ const getTodos = () =>{
 
 //display todos
 const renderTodo = (todo) =>{
-  return `<div class='todo hide'>
+  return `<div class='todo'>
           <h2>${todo.title}</h2>
-          <p>completed: ${todo.completed}</p>
+          <button class='completionStatus' onclick='updateComplete()'>Toggle Task</button>
+          <p class='completed'>completed: ${todo.completed}</p>
           </div>`;
+};
+
+const updateComplete = () => {
+   state.todos.forEach((todo)=>{
+     if(todo.completed === false){
+      todo.completed = true;
+     }else if(todo.completed === true){
+       todo.completed = false;
+     }
+     console.log(todo.completed);
+   });
 };
 
 const renderTodos = () =>{
@@ -72,12 +84,8 @@ const renderTodos = () =>{
 
 //have buttons that filter todos that are complete and not complete
 const filterComplete = () => {
-//    state.todos.filter(todo => {
-//     todo.completed !== false;
-//     todo.display = true;
-   
-// })
 
+//tried filter first had issues this way works
   state.todos.forEach((todo, i) => {
     if(todo.completed === false){
       let todoClass = document.getElementsByClassName("todo");
@@ -89,6 +97,19 @@ const filterComplete = () => {
 });
 };
 
+const filterNotComplete = () => {
+
+  //tried filter first had issues this way works
+    state.todos.forEach((todo, i) => {
+      if(todo.completed === true){
+        let todoClass = document.getElementsByClassName("todo");
+        
+          todoClass[i].style.display = "none";
+        
+        console.log(todo);
+    };
+  });
+  };
 //be able to toggle a todo being complete or not (checkbox?)
 
 //be able to sort todos by title and or userID
@@ -114,6 +135,7 @@ const render = () => {
   htmlString += "<div class='btn-group'>";
   htmlString += `<button class='btn' onclick='showDiv()'>Get Todos</button>`;
   htmlString += `<button class='btn' onclick='filterComplete();'>Filter Completed</button>`;
+  htmlString += `<button class='btn' onclick='filterNotComplete();'>Filter Not Completed</button>`;
   htmlString += renderTodos();
   htmlString += "</div>";
   document.getElementById('app').innerHTML = htmlString;
