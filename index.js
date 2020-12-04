@@ -48,20 +48,23 @@ const renderTodo = (todo) =>{
   return `<div class='todo'>
           <h2>${todo.title}</h2>
           <button class='completionStatus' onclick='updateComplete()'>Toggle Task</button>
-          <p class='completed'>completed: ${todo.completed}</p>
           </div>`;
 };
 
-const updateComplete = () => {
-   state.todos.forEach((todo)=>{
-     if(todo.completed === false){
-      todo.completed = true;
-     }else if(todo.completed === true){
-       todo.completed = false;
-     }
-     console.log(todo.completed);
-   });
-};
+//works but toggles every on one button click :(
+// const updateComplete = () => {
+//    state.todos.forEach((todo)=>{
+//      if(todo.completed === false){
+//       todo.completed = true;
+//       document.getElementsByClassName("completed").innerHTML = "yo";
+//      }else if(todo.completed === true){
+//        todo.completed = false;
+//       document.getElementsByClassName("completed").innerHTML = "yo";
+
+//      }
+//      console.log(todo.completed);
+//    });
+// };
 
 const renderTodos = () =>{
   const {todos, errorOccured, errorMessage, errorStatus} = state;
@@ -133,6 +136,7 @@ const render = () => {
   let htmlString = `<div>`;
   htmlString += "<h1>Todos</h1>";
   htmlString += "<div class='btn-group'>";
+  htmlString += `<button onClick="window.location.reload();">Refresh Page</button>`;
   htmlString += `<button class='btn' onclick='showDiv()'>Get Todos</button>`;
   htmlString += `<button class='btn' onclick='filterComplete();'>Filter Completed</button>`;
   htmlString += `<button class='btn' onclick='filterNotComplete();'>Filter Not Completed</button>`;

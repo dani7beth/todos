@@ -1,4 +1,11 @@
+body{
+  background-color: #e8e8e8;
+  color: #f05454;
+  font-family: 'Montserrat';
+}
 h1 {
-  color: red;
+  font-family: 'Oswald';
+  font-size: 3rem;
+  color: #30475e;
 }
 
