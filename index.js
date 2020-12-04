@@ -74,11 +74,16 @@ const renderTodos = () =>{
 
 //have buttons that filter todos that are complete and not complete
 const filterComplete = () => {
-  state.todos.filter(todo => {
-    todo.completed === false;
+  let arr = state.todos.filter(todo => {
+    todo.completed === true;
     todo.display = false;
+  }).map(todo => {
+    return renderTodo(todo);
   });
-  document.getElementById("todo").style.display = "none";
+  document.getElementById("todos").style.display = "none";
+  let htmlString = `<div id='completed' style='display: none' class='grid'>${arr.join("")}</div>`;
+
+  return htmlString;
 };
 
 //be able to toggle a todo being complete or not (checkbox?)
@@ -107,7 +112,6 @@ const render = () => {
   htmlString += `<button class='btn' onclick='showDiv()'>Get Todos</button>`;
   htmlString += `<button class='btn' onclick='filterComplete();'>Filter Completed</button>`;
   htmlString += renderTodos();
-
   htmlString += "</div>";
   document.getElementById('app').innerHTML = htmlString;
 };
