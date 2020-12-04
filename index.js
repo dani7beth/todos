@@ -45,7 +45,7 @@ const getTodos = () =>{
 
 //display todos
 const renderTodo = (todo) =>{
-  return `<div id='todo'>
+  return `<div class='todo hide'>
           <h2>${todo.title}</h2>
           <p>completed: ${todo.completed}</p>
           </div>`;
@@ -64,26 +64,29 @@ const renderTodos = () =>{
     return renderTodo(todo);
   });
   
-
-  
-  let htmlString = `<div id='todos' style='display: none' class='grid'>${todosStringArray.join("")}</div>`;
-
+   let htmlString = `<div id='todos' style='display: none' class='grid'>${todosStringArray.join("")}</div>`;
+   
     
   return htmlString;
 };
 
 //have buttons that filter todos that are complete and not complete
 const filterComplete = () => {
-  let arr = state.todos.filter(todo => {
-    todo.completed === true;
-    todo.display = false;
-  }).map(todo => {
-    return renderTodo(todo);
-  });
-  document.getElementById("todos").style.display = "none";
-  let htmlString = `<div id='completed' style='display: none' class='grid'>${arr.join("")}</div>`;
+//    state.todos.filter(todo => {
+//     todo.completed !== false;
+//     todo.display = true;
+   
+// })
 
-  return htmlString;
+  state.todos.forEach((todo, i) => {
+    if(todo.completed === false){
+      let todoClass = document.getElementsByClassName("todo");
+      
+        todoClass[i].style.display = "none";
+      
+      console.log(todo);
+  };
+});
 };
 
 //be able to toggle a todo being complete or not (checkbox?)
