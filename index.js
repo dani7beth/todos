@@ -45,26 +45,13 @@ const getTodos = () =>{
 
 //display todos
 const renderTodo = (todo) =>{
+  console.log(todo);
   return `<div class='todo'>
           <h2>${todo.title}</h2>
-          <button class='completionStatus' onclick='updateComplete()'>Toggle Task</button>
+          <button class='completionStatus' onclick='updateComplete();'>${todo.completed}</button>
           </div>`;
 };
 
-//works but toggles every on one button click :(
-// const updateComplete = () => {
-//    state.todos.forEach((todo)=>{
-//      if(todo.completed === false){
-//       todo.completed = true;
-//       document.getElementsByClassName("completed").innerHTML = "yo";
-//      }else if(todo.completed === true){
-//        todo.completed = false;
-//       document.getElementsByClassName("completed").innerHTML = "yo";
-
-//      }
-//      console.log(todo.completed);
-//    });
-// };
 
 const renderTodos = () =>{
   const {todos, errorOccured, errorMessage, errorStatus} = state;
@@ -94,33 +81,39 @@ const filterComplete = () => {
       let todoClass = document.getElementsByClassName("todo");
       
         todoClass[i].style.display = "none";
-      
-      console.log(todo);
+      // console.log(todo);
   };
 });
 };
 
 const filterNotComplete = () => {
-
   //tried filter first had issues this way works
     state.todos.forEach((todo, i) => {
       if(todo.completed === true){
         let todoClass = document.getElementsByClassName("todo");
         
           todoClass[i].style.display = "none";
-        
-        console.log(todo);
+        // console.log(todo);
     };
   });
   };
 //be able to toggle a todo being complete or not (checkbox?)
+  //const updateComplete = (() => {
+  //      if(todo.completed === false){
+  //       todo.completed = true;
+  //       document.getElementsByClassName("completed").innerHTML = "yo";
+  //      }else if(todo.completed === true){
+  //        todo.completed = false;
+  //       document.getElementsByClassName("completed").innerHTML = "yo";
+  
+  //      }
+  //      console.log(todo.completed);
+  //    });
 
 //be able to sort todos by title and or userID
-
-//add some custom styles css
-
-//add a reset button that doesnt need a new API call to resert todos
-
+const sortByTodosTitle = () =>{
+  state.todos.sort();
+};
 
 const showDiv = () =>{
   state.todos.filter(todo => {
@@ -136,10 +129,12 @@ const render = () => {
   let htmlString = `<div>`;
   htmlString += "<h1>Todos</h1>";
   htmlString += "<div class='btn-group'>";
+  //add a reset button that doesnt need a new API call to resert todos
   htmlString += `<button onClick="window.location.reload();">Reset</button>`;
   htmlString += `<button class='btn' onclick='showDiv()'>Get Todos</button>`;
   htmlString += `<button class='btn' onclick='filterComplete();'>Filter Completed</button>`;
   htmlString += `<button class='btn' onclick='filterNotComplete();'>Filter Not Completed</button>`;
+  htmlString += `<button class='btn' onclick='sortByTodosTitle();'>Sort By Title</button>`;
   htmlString += renderTodos();
   htmlString += "</div>";
   document.getElementById('app').innerHTML = htmlString;
