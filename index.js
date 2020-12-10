@@ -48,7 +48,7 @@ const renderTodo = (todo) =>{
   console.log(todo);
   return `<div class='todo'>
           <h2>${todo.title}</h2>
-          <button class='completionStatus' onclick='updateComplete();'>${todo.completed}</button>
+          <button class='completionStatus btn btn-primary' onclick='updateComplete();'>${todo.completed}</button>
           </div>`;
 };
 
@@ -110,6 +110,7 @@ const filterNotComplete = () => {
   //      console.log(todo.completed);
   //    });
 
+
 //be able to sort todos by title and or userID
 const sortByTodosTitle = () =>{
   state.todos.sort();
@@ -126,16 +127,19 @@ const showDiv = () =>{
 };
 
 const render = () => {
+  const {display} = state;
   let htmlString = `<div>`;
   htmlString += "<h1>Todos</h1>";
   htmlString += "<div class='btn-group'>";
   //add a reset button that doesnt need a new API call to resert todos
-  htmlString += `<button onClick="window.location.reload();">Reset</button>`;
-  htmlString += `<button class='btn' onclick='showDiv()'>Get Todos</button>`;
-  htmlString += `<button class='btn' onclick='filterComplete();'>Filter Completed</button>`;
-  htmlString += `<button class='btn' onclick='filterNotComplete();'>Filter Not Completed</button>`;
-  htmlString += `<button class='btn' onclick='sortByTodosTitle();'>Sort By Title</button>`;
+  htmlString += `<button class= 'btn btn-primary' onClick="window.location.reload();">Reset</button>`;
+  htmlString += `<button class='btn btn-primary' onclick='showDiv();'>Get Todos</button>`;
+  htmlString += `<button class='btn btn-primary' onclick='filterComplete();'>Filter Completed</button>`;
+  htmlString += `<button class='btn btn-primary' onclick='filterNotComplete();'>Filter Not Completed</button>`;
+  htmlString += `<button class='btn btn-primary' onclick='sortByTodosTitle();'>Sort By Title</button>`;
+  htmlString += `</div>`;
   htmlString += renderTodos();
+  
   htmlString += "</div>";
   document.getElementById('app').innerHTML = htmlString;
 };
